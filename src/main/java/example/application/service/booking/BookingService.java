@@ -1,5 +1,6 @@
 package example.application.service.booking;
 
+import example.application.service.booking.policy.OverbookingPolicy;
 import example.domain.model.booking.BookingNumber;
 import example.domain.model.booking.Cargo;
 import example.domain.model.booking.Voyage;
@@ -11,7 +12,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookingService {
 
-    // TODO コマンドとクエリーの分離
+    private final OverbookingPolicy overbookingPolicy;
+
+    public BookingService(OverbookingPolicy overbookingPolicy) {
+        this.overbookingPolicy = overbookingPolicy;
+    }
 
     /**
      * 限度を超えていなかったら予約して予約番号を返す
@@ -21,10 +26,7 @@ public class BookingService {
      */
     BookingNumber booking(Voyage voyage, Cargo cargo) {
 
-        // TODO ビジネスルールの明示（クラスを使って）
-        // TODO ビジネスロジックの記述をdomain.modelに移動
-        double maxBooking = voyage.capacity() * 1.1 ;
-        if (voyage.bookedSize() + cargo.size() > maxBooking)
+        if (overbookingPolicy.isAllowed(cargo, voyage))
             throw new IllegalStateException("最大積載量オーバー");
 
         return BookingNumber.generate();

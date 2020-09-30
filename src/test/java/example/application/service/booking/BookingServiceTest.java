@@ -20,7 +20,7 @@ class BookingServiceTest {
     void overBooking() {
         Voyage voyage = new Voyage();
         voyage.addBookedSize(100);
-        Cargo cargo = new Cargo(20);
+        Cargo cargo = new Cargo(10);
 
         assertThrows(IllegalStateException.class, () ->
                 bookingService.booking(voyage, cargo));
