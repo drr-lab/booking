@@ -1,6 +1,6 @@
 package example.application.service.booking;
 
-import example.application.service.booking.policy.OverbookingPolicy;
+import example.domain.model.booking.policy.OverbookingPolicy;
 import example.domain.model.booking.BookingNumber;
 import example.domain.model.booking.Cargo;
 import example.domain.model.booking.Voyage;

@@ -1,4 +1,4 @@
-package example.application.service.booking.policy;
+package example.domain.model.booking.policy;
 
 import example.domain.model.booking.Cargo;
 import example.domain.model.booking.Voyage;

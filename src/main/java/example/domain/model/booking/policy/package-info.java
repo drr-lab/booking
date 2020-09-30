@@ -1,4 +1,4 @@
 /**
  * オーバーブッキングポリシー
  */
-package example.application.service.booking.policy;
+package example.domain.model.booking.policy;
